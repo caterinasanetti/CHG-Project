@@ -125,7 +125,6 @@ java -jar $VARSCAN_JAR somatic Control.sorted.pileup Tumor.sorted.pileup --outpu
 java -Xmx4g -jar $SNPSIFT_JAR Annotate $HAPMAP_VCF somatic.pm.vcf > somatic.pm.vcf.hapmap_ann.vcf
 
 # - Filtering vcf
-cat somatic.pm.vcf.hapmap_ann.vcf | java -Xmx4g -jar $SNPSIFT_JAR filter "(POS = 1896100)" && \
 cat somatic.pm.vcf.hapmap_ann.vcf | java -Xmx4g -jar $SNPSIFT_JAR filter "(exists ID) & ( ID =~ 'rs' )" > somatic.pm.onlySNPs.vcf && \
 cat somatic.pm.vcf.hapmap_ann.vcf | java -Xmx4g -jar $SNPSIFT_JAR filter "!(exists ID) & !( ID =~ 'rs' )" > somatic.pm.noSNPs.vcf
 
